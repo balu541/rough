@@ -1,0 +1,22 @@
+<form [formGroup]="frmStepOne" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+    </mat-form-field>
+    
+    <div>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Search" value="" formControlName="searchbar">
+        </mat-form-field>
+    </div>
+   <div>
+       <mat-checkbox formControlName="selectAll" [(checked)]="isAll" (change)="select($event)">selectAll</mat-checkbox>
+   </div>
+    <div formArrayName="selectedshoes" *ngFor="let item of data; let i=index">
+            <mat-checkbox [value]="item.name"  [(checked)]="isSelected" (change)="MatCheckbox($event)"><label>{{item.name}}</label></mat-checkbox>
+    </div>
+
+    <div>
+        <button mat-button matStepperNext>Next</button>
+    </div>
+</form>
